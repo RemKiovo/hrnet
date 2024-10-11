@@ -1,26 +1,18 @@
-"use client";
+'use client'
 
-import { store } from "@/store/store";
-import { Provider } from "react-redux";
+import { DataTable } from './components/data-table'
+import { columns } from './components/columns'
+import { RootState } from '@/store/store'
+import { useSelector } from 'react-redux'
 
-const EmployeeListPage = () => {
+const EmployeeList = () => {
+  const employees = useSelector((state: RootState) => state.employees)
   return (
-    <Provider store={store}>
-      {store.getState().employees.map((employee) => (
-        <ul key={employee.id}>
-          <li>{employee.id}</li>
-          <li>{employee.firstName}</li>
-          <li>{employee.lastName}</li>
-          <li>{employee.dateOfBirth}</li>
-          <li>{employee.startDate}</li>
-          <li>{employee.street}</li>
-          <li>{employee.city}</li>
-          <li>{employee.state}</li>
-          <li>{employee.zipCode}</li>
-        </ul>
-      ))}
-    </Provider>
-  );
-};
+    <DataTable
+      columns={columns}
+      data={employees}
+    />
+  )
+}
 
-export default EmployeeListPage;
+export default EmployeeList

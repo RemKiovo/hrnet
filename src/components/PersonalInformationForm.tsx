@@ -127,7 +127,9 @@ const PersonalInformationForm: React.FC<PersonalInformationFormProps> = ({
                     setDobError(null);
                   }}
                   initialFocus
-                  disabled={(date) => date < new Date(1900, 0, 1)}
+                  disabled={(date) =>
+                    date < new Date(1900, 0, 1) || date > new Date()
+                  }
                   defaultMonth={dateOfBirth ? dateOfBirth : new Date()}
                 />
               </PopoverContent>

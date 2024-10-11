@@ -1,29 +1,34 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Space_Grotesk } from "next/font/google";
+import type { Metadata } from 'next'
+import './globals.css'
+import { Space_Grotesk } from 'next/font/google'
+import Header from '@/components/Header'
+import { Providers } from '@/lib/providers'
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-});
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "HRNet",
-  description: "HRNet is a HR management application",
+  title: 'HRNet',
+  description: 'HRNet is a HR management application',
   icons: {
-    icon: "/favicon.png",
+    icon: '/favicon.png',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={`${spaceGrotesk.className} antialiased`}>
-        {children}
+        <Header />
+        <main className='container mx-auto py-8'>
+          <Providers>{children}</Providers>
+        </main>
       </body>
     </html>
-  );
+  )
 }

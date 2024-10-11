@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const EmployeeListLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>;
+  return children;
 };
 
 export default EmployeeListLayout;
