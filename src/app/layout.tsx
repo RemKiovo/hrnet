@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${spaceGrotesk.className} antialiased`}>
         <Header />
-        <main className='container mx-auto py-8'>
+        <main className='container mx-auto md:py-8 pt-4'>
           <Providers>{children}</Providers>
         </main>
       </body>

@@ -43,7 +43,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
           aria-required='true'
         />
       </div>
-      <div className='grid grid-cols-2 max-md:grid-cols-1 gap-4'>
+      <div className='grid grid-cols-2 max-sm:grid-cols-1 gap-4'>
         <div className='space-y-2'>
           <Label htmlFor='city'>City</Label>
           <Input
@@ -68,7 +68,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
             >
               <SelectValue placeholder='Select a state' />
             </SelectTrigger>
-            <SelectContent className='max-h-[200px] overflow-y-auto'>
+            <SelectContent className='max-h-[400px] overflow-y-auto'>
               {US_STATES.map((state) => (
                 <SelectItem
                   key={state.abbreviation}
