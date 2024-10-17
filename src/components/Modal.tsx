@@ -6,10 +6,13 @@ import { Button } from './ui/button'
 import { motion } from 'framer-motion'
 
 interface ModalProps {
+  title: string
+  description: string
+  buttonText: string
   closeModal: () => void
 }
 
-const Modal = ({ closeModal }: ModalProps) => {
+const Modal = ({ title, description, buttonText, closeModal }: ModalProps) => {
   const router = useRouter()
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -17,6 +20,7 @@ const Modal = ({ closeModal }: ModalProps) => {
       closeModal()
     }
   }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -29,16 +33,12 @@ const Modal = ({ closeModal }: ModalProps) => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
-        className='bg-white p-6 rounded shadow-md flex flex-col items-center gap-4 relative'
+        className='bg-white p-4 sm:p-6 rounded shadow-md flex flex-col items-center gap-4 relative sm:max-w-sm max-w-xs'
       >
-        <h3 className='text-xl font-bold'>Employee Created</h3>
-        <p className='text-center'>
-          The new employee has been created successfully!
-        </p>
+        <h3 className='text-lg sm:text-xl font-bold'>{title}</h3>
+        <p className='text-center text-sm sm:text-base'>{description}</p>
         <button
-          onClick={() => {
-            closeModal()
-          }}
+          onClick={closeModal}
           className='absolute -top-2 -right-2 rounded-full bg-black text-white p-2'
         >
           <XIcon className='w-4 h-4' />
@@ -50,7 +50,7 @@ const Modal = ({ closeModal }: ModalProps) => {
           }}
           className='w-full'
         >
-          View Employees
+          {buttonText}
         </Button>
       </motion.div>
     </motion.div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '@/store/store'
 import {
@@ -82,6 +82,14 @@ const CreateEmployeeCard = () => {
     setIsModalOpen(false)
   }
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isModalOpen])
+
   return (
     <>
       <section aria-labelledby='create-employee-title'>
@@ -154,7 +162,14 @@ const CreateEmployeeCard = () => {
         </Card>
       </section>
 
-      {isModalOpen && <Modal closeModal={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          closeModal={closeModal}
+          title='Employee Created'
+          description='The new employee has been created successfully!'
+          buttonText='View Employees'
+        />
+      )}
     </>
   )
 }
