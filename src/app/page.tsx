@@ -15,10 +15,12 @@ import PersonalInformationForm from '@/components/PersonalInformationForm'
 import AddressForm from '@/components/AddressForm'
 import DepartmentForm from '@/components/DepartmentForm'
 import { format } from 'date-fns'
-import Modal from '../components/Modal'
+import Modal from '@remkiovo/react-modal'
+import { useRouter } from 'next/navigation'
 
 const CreateEmployeeCard = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const [firstName, setFirstName] = useState<string>('')
   const [lastName, setLastName] = useState<string>('')
   const [dateOfBirth, setDateOfBirth] = useState<Date | undefined>(undefined)
@@ -29,7 +31,7 @@ const CreateEmployeeCard = () => {
   const [zipCode, setZipCode] = useState<number | null>(null)
   const [department, setDepartment] = useState<string>('')
   const [formErrors, setFormErrors] = useState<string[]>([])
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true)
 
   const validateForm = () => {
     const errors: string[] = []
@@ -82,6 +84,10 @@ const CreateEmployeeCard = () => {
     setIsModalOpen(false)
   }
 
+  const handleRedirect = () => {
+    router.push('/employee-list')
+  }
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
@@ -105,10 +111,7 @@ const CreateEmployeeCard = () => {
               Enter the details of the new employee.
             </CardDescription>
           </CardHeader>
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-          >
+          <form onSubmit={handleSubmit} noValidate>
             <CardContent className='space-y-6'>
               {formErrors.length > 0 && (
                 <div
@@ -151,10 +154,7 @@ const CreateEmployeeCard = () => {
               />
             </CardContent>
             <CardFooter>
-              <Button
-                type='submit'
-                className='w-full'
-              >
+              <Button type='submit' className='w-full'>
                 Create Employee
               </Button>
             </CardFooter>
@@ -165,9 +165,12 @@ const CreateEmployeeCard = () => {
       {isModalOpen && (
         <Modal
           closeModal={closeModal}
+          buttonOnClick={handleRedirect}
           title='Employee Created'
           description='The new employee has been created successfully!'
           buttonText='View Employees'
+          className='bg-white'
+          buttonClassName='bg-violet-800 hover:bg-violet-900 text-white'
         />
       )}
     </>
