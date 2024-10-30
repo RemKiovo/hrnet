@@ -75,6 +75,29 @@ export const columns: ColumnDef<Employee>[] = [
     ),
   },
   {
+    accessorKey: 'dateOfBirth',
+    header: ({ column }) => (
+      <div className='flex justify-center'>
+        <button
+          className='flex items-center text-sm font-medium text-black'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Date of Birth
+          <ArrowUp
+            className={`ml-2 h-4 w-4 ${
+              column.getIsSorted() === 'asc' ? 'text-blue-600' : 'text-black'
+            }`}
+          />
+          <ArrowDown
+            className={`ml-2 h-4 w-4 ${
+              column.getIsSorted() === 'desc' ? 'text-blue-600' : 'text-black'
+            }`}
+          />
+        </button>
+      </div>
+    ),
+  },
+  {
     accessorKey: 'department',
     header: ({ column }) => (
       <div className='flex justify-center'>
