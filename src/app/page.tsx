@@ -1,8 +1,9 @@
 'use client'
 
+import '@remkiovo/react-modal/dist/index.css'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addEmployee } from '@/store/store'
+import { addEmployee, Department } from '@/store'
 import {
   Card,
   CardContent,
@@ -15,7 +16,7 @@ import PersonalInformationForm from '@/components/PersonalInformationForm'
 import AddressForm from '@/components/AddressForm'
 import DepartmentForm from '@/components/DepartmentForm'
 import { format } from 'date-fns'
-import Modal from '@remkiovo/react-modal'
+import { Modal } from '@remkiovo/react-modal'
 import { useRouter } from 'next/navigation'
 
 const CreateEmployeeCard = () => {
@@ -29,9 +30,9 @@ const CreateEmployeeCard = () => {
   const [city, setCity] = useState<string>('')
   const [state, setState] = useState<string>('')
   const [zipCode, setZipCode] = useState<number | null>(null)
-  const [department, setDepartment] = useState<string>('')
+  const [department, setDepartment] = useState<Department>('')
   const [formErrors, setFormErrors] = useState<string[]>([])
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   const validateForm = () => {
     const errors: string[] = []
@@ -64,7 +65,7 @@ const CreateEmployeeCard = () => {
           city,
           state,
           zipCode: Number(zipCode),
-          department,
+          department: department,
         })
       )
       setIsModalOpen(true) // Show modal on successful creation

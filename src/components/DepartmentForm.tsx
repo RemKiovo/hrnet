@@ -4,12 +4,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DEPARTMENTS } from "@/constants";
+} from '@/components/ui/select'
+import { DEPARTMENTS } from '@/constants'
+import { Department } from '@/store'
 
 interface DepartmentFormProps {
-  department: string;
-  setDepartment: (value: string) => void;
+  department: Department
+  setDepartment: (value: Department) => void
 }
 
 const DepartmentForm: React.FC<DepartmentFormProps> = ({
@@ -17,33 +18,26 @@ const DepartmentForm: React.FC<DepartmentFormProps> = ({
   setDepartment,
 }) => {
   return (
-    <fieldset className="space-y-4">
-      <legend className="text-lg font-medium">Department</legend>
-      <Select
-        value={department}
-        onValueChange={setDepartment}
-        required
-      >
+    <fieldset className='space-y-4'>
+      <legend className='text-lg font-medium'>Department</legend>
+      <Select value={department} onValueChange={setDepartment} required>
         <SelectTrigger
-          id="department"
-          className="w-full"
-          aria-label="Select a state"
+          id='department'
+          className='w-full'
+          aria-label='Select a state'
         >
-          <SelectValue placeholder="Select a department" />
+          <SelectValue placeholder='Select a department' />
         </SelectTrigger>
-        <SelectContent className="max-h-[200px] overflow-y-auto">
+        <SelectContent className='max-h-[200px] overflow-y-auto'>
           {DEPARTMENTS.map((department) => (
-            <SelectItem
-              key={department}
-              value={department}
-            >
+            <SelectItem key={department} value={department}>
               {department}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
     </fieldset>
-  );
-};
+  )
+}
 
-export default DepartmentForm;
+export default DepartmentForm
