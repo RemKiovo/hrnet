@@ -1,49 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HRNet
+
+This project aims to migrate a specific jQuery library in an existing application to a modern, performant React component-based structure. The primary objective is to refactor key pages of the application by replacing a specific jQuery plugin with a custom-built React component. This migration is built with React, Next.js, TailwindCSS, and ShadCN UI to ensure a fast, scalable, and well-styled UI experience.
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+
+## Project Overview
+
+The goal of this project is to replace a particular jQuery plugin with a React component while maintaining the application’s core functionality and enhancing maintainability. This migration requires a strong understanding of both jQuery and React, as well as the ability to ensure seamless integration between the two during the transition.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Next.js**: A React framework for server-side rendering and generating static websites.
+- **TailwindCSS**: A utility-first CSS framework for rapid UI development.
+- **ShadCN UI**: A component library for building modern web applications.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure that you have the following installed on your machine:
+
+- Node.js (v16 and above)
+- Bun (v1.1.33 and above)
+
+**Bun was used to install dependencies and run the project**. It is a fast and efficient alternative to npm.
+
+### Installation
+
+1. Clone the repository.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/RemKiovo/hrnet.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+2. Install the required dependencies.
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+```bash
+bun install
+```
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+3. Start the development server.
 
-## Learn More
+```bash
+bun run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
+In this migration, I did:
 
-## Deploy on Vercel
+- Refactor pages using a jQuery plugin by implementing a React component that replicates its functionality.
+- Maintain the application’s existing features while leveraging React’s state management, lifecycle hooks, and modular structure.
+- Apply styles using TailwindCSS to ensure a responsive and visually consistent UI.
+- Utilize ShadCN UI components for cohesive and accessible design elements.
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+## Project Structure
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+```text
+  ├── .eslintrc.json
+  ├── .gitignore
+  ├── .next/
+  ├── components.json     // Shadcn config file
+  ├── public/
+  ├── README.md           // You're here!
+  ├── src/
+  │ ├── app/
+  │ │ ├── employee-list/
+  │ │ │ ├── components/  // Table component
+  │ │ │ └── page.tsx
+  │ │ ├── globals.css
+  │ │ └── layout.tsx
+  │ │ └── page.tsx       // Main page
+  │ ├── components/
+  │ │ ├── AddressForm.tsx
+  │ │ ├── DepartmentForm.tsx
+  │ │ ├── Header.tsx
+  │ │ └── ui/           // Shadcn components
+  │ ├── constants/
+  │ │ └── index.ts
+  │ ├── lib/
+  │ │ ├── providers.tsx // Redux Providers
+  │ │ └── utils.ts
+  │ └── store.ts        // Redux store
+  ├── tailwind.config.ts
+  └── tsconfig.json
+```
